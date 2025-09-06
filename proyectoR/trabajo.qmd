@@ -94,3 +94,4 @@ g1 <- ggplot(empleados, aes(x = Nivel_Educativo, fill = Nivel_Educativo)) +
 ggplotly(g1)
 ```
 
+https://www.kaggle.com/datasets/juandavsnchez/real-estatehousing-colombia-bogota
