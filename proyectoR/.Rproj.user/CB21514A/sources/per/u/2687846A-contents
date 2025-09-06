@@ -1,0 +1,6 @@
+#install.packages("dplyr")
+
+require(dplyr)
+
+empleados <- readRDS("./df_empleados.rds")
+

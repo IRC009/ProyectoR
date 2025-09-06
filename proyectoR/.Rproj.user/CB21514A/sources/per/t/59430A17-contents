@@ -1,0 +1,96 @@
+---
+title: "Programación básica R studio"
+subtitle: "Sesión 02 - Manipulación de datos"
+author: 
+  - name: Issac Rodas Caseres
+    email: issacrodasdc@unimagdalena.edu.co
+    affiliations:
+      - name: Universidad del Magdalena, Santa Marta
+date: "09/06/2025"
+lang: es
+toc: true
+toc-depth: 3
+toc-location: left
+toc-title: ""
+fontsize: 13pt
+number-sections: false
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+self-contained: true 
+---
+
+# titulo 1
+
+## titulo 2
+
+### titulo 3
+
+funciona lo de **whatssap**
+
+con control + alt + i se abre el chunk
+
+```{r}
+1+1
+```
+
+# primer paso
+
+preparar la maquina. llamar la libreria
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+```
+
+## segundo paso
+
+Hacer llamado y visualización de DB
+
+```{r message=FALSE, warning=FALSE}
+library(kableExtra)
+empleados <- readRDS("./df_empleados.rds")
+# el Kable formatea la tabla
+kable(head(empleados, 10))
+```
+
+## Paso 3
+Describir los datos
+¿qué tengo yo en mi base de datos?
+
+mi df fue capturada en la empresa X la cual cuenta con 200 registros a 200 empleados.
+Aplicando 8 preguntas sobre su salario.
+
+### paso 3.1
+
+Realizar un describe de datos para entenderla
+
+```{r}
+# sumary resume toda la base de datos
+kable(summary(empleados))
+```
+
+```{r}
+kable(table(empleados$Departamento))
+```
+
+**Analisis cruzado**
+```{r}
+table(empleados$Departamento, empleados$Sexo)
+```
+
+¿Qué pasa con el nivel educativo de los empleados?
+
+```{r}
+library(plotly)
+table(empleados$Nivel_Educativo, empleados$Sexo)
+g1 <- ggplot(empleados, aes(x = Nivel_Educativo, fill = Nivel_Educativo)) + 
+  geom_bar() +
+  labs(title = "Distribución de Empleados por Nivel Educativo", x = "Nivel Educativo", y = "Número de Empleados") +
+  theme_minimal()
+ggplotly(g1)
+```
+
